@@ -101,7 +101,13 @@ function loopUpperChars(count) {
     } else {
       upperAndLowerAndNumbers[i] = numberGenerator();
     }
-    displayWord(upperAndLowerAndNumbers);
+
+let hasNumberCheck = hasNumber(upperAndLowerAndNumbers);
+      if (hasNumberCheck=== 'true') {
+    } else {
+      console.log('It didnt have numbers');
+      LoopBothLowAndUpperAndNumbers();
+      }
     }
   } // einde functie
 
@@ -121,4 +127,8 @@ function upperCaseLetterGenerator () {
 function determineUpperOrLower () {
   let upperOrLower = Math.random();
     return upperOrLower;
+}
+//check if a string has a number
+function hasNumber(myString) {
+  return /\d/.test(myString);
 }
