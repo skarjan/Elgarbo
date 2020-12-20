@@ -40,10 +40,15 @@
   <div class="row">
     <div class="col-6">
       <section class="">
-      <h1>Password generator</h1>
-      <p>Use Elgarbo to generate a secure password.</p>
-      <button class="btn btn-primary" type="button" name="button" onclick="loopLetters()">Generate</button>
-      <span id="js-wordElement" class="">password</span>
+
+      <p class="mt-30">Use Elgarbo to generate a secure password.</p>
+      <h2 id="js-wordElement">Password generator</h2>
+      <p>Aantal tekens: <span id="demo"></span></p>
+      <div class="slidecontainer">
+        <input type="range" min="6" max="20" value="8" class="slider" id="myRange">
+      </div>
+      <button class="btn btn-primary" type="button" name="lower-char-button" onclick="loopLowerChars()">lowerchar</button>
+      <button class="btn btn-primary" type="button" name="upper-char-button" onclick="loopUpperChars()">UPPERCHAR</button>
     </section>
     </div> <!-- einde kolom 1 -->
     <div class="col-6">
