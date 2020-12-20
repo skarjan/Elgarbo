@@ -17,6 +17,12 @@
   width: 100%; /* Width of the outside container */
 }
 
+/* quick image resizing on small screen */
+@media screen and (max-width: 576px) {
+    img.cows {
+         width: 300px;
+    }
+}
 
 /* The slider itself */
 .slider {
