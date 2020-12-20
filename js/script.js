@@ -2,6 +2,24 @@
 console.log("Welcome to the Elgarbo beta. Feel free to edit as you wish.")
 // for development use remove before PROD
 let testArray = ['a','f','d','z','h'];
+//  Copy button
+function copyToClipboard(elementId) {
+  // Create an auxiliary hidden input
+  var aux = document.createElement("input");
+  // Get the text from the element passed into the input
+  aux.setAttribute("value", document.getElementById(elementId).innerHTML);
+  // Append the aux input to the body
+  document.body.appendChild(aux);
+  // Highlight the content
+  aux.select();
+  // Execute the copy command
+  document.execCommand("copy");
+  // Remove the input from the body
+  document.body.removeChild(aux);
+} // End of function
+
+
+
 
 // Slider functionality
 var slider = document.getElementById("myRange");
@@ -27,10 +45,19 @@ function displayWord (e) {
 function lowerCaseLetterGenerator () {
   const abc = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
   let floatIndexOfLetter = Math.random()*26;
-  let IntIndexOfLetter = Math.trunc(floatIndexOfLetter);
-  let randomLowerChar = abc[IntIndexOfLetter];
+  let intIndexOfLetter = Math.trunc(floatIndexOfLetter);
+  let randomLowerChar = abc[intIndexOfLetter];
   console.log(randomLowerChar);
   return randomLowerChar;
+}
+// Number numberGenerator
+function numberGenerator() {
+  const allNums = [0,1,2,3,4,5,6,7,8,9]
+  let floatIndexOfLetter = Math.random()*10;
+  let intIndexOfLetter = Math.trunc(floatIndexOfLetter);
+  let randomNumber = allNums[intIndexOfLetter];
+  console.log(randomNumber);
+  return randomNumber;
 }
 
 // Loop letters into a lower case word variable
@@ -52,13 +79,46 @@ function loopUpperChars(count) {
         displayWord(word);
       }
   }
+  function LoopBothLowAndUpperChar () {
+    let upperAndLower = [];
+    var count = document.getElementById("demo").innerHTML;
+  for (var i = 0; i < count; i++) {
+    if (determineUpperOrLower() <= 0.50) {
+      upperAndLower[i] = lowerCaseLetterGenerator();
+    } else {
+      upperAndLower[i] = upperCaseLetterGenerator();
+    } displayWord(upperAndLower);
+    }
+  } // einde functie
+  function LoopBothLowAndUpperAndNumbers () {
+    let upperAndLowerAndNumbers = [];
+    var count = document.getElementById("demo").innerHTML;
+  for (var i = 0; i < count; i++) {
+    if (determineUpperOrLower() <= 0.34) {
+      upperAndLowerAndNumbers[i] = lowerCaseLetterGenerator();
+    } else if (determineUpperOrLower() <= 0.67) {
+      upperAndLowerAndNumbers[i] = upperCaseLetterGenerator();
+    } else {
+      upperAndLowerAndNumbers[i] = numberGenerator();
+    }
+    displayWord(upperAndLowerAndNumbers);
+    }
+  } // einde functie
+
+
+
 
 // Random uppercase character
 function upperCaseLetterGenerator () {
     const ABC =  ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
     let floatIndexOfLetter = Math.random()*26;
-    let IntIndexOfLetter = Math.trunc(floatIndexOfLetter);
-    let randomUpperChar = ABC[IntIndexOfLetter];
+    let intIndexOfLetter = Math.trunc(floatIndexOfLetter);
+    let randomUpperChar = ABC[intIndexOfLetter];
     console.log(randomUpperChar);
     return randomUpperChar;
   }
+  // upper and lower character lowerCaseLetter
+function determineUpperOrLower () {
+  let upperOrLower = Math.random();
+    return upperOrLower;
+}
