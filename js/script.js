@@ -13,6 +13,7 @@ function lowerCaseLetterGenerator () {
   IntIndexOfLetter = Math.trunc(floatIndexOfLetter);
   randomLowerChar = abc[IntIndexOfLetter];
   console.log(randomLowerChar);
+  return randomLowerChar;
 }
 
 
