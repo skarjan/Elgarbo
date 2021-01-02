@@ -111,3 +111,10 @@
   background: #007bff; /* blue background */
   cursor: pointer; /* Cursor on hover */
 }
+
+.navbar-brand {
+  font-size: 1rem;
+}
+.navbar-img {
+  height:30px;
+}
