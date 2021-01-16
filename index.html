@@ -41,33 +41,37 @@
   <div class="row">
     <div class="col-lg-6 col-sm-12">
       <p class="mt10">Use Elgarbo to generate a secure password.</p>
-      <section class="pt40 pb90 text-center">
+      <section class="pt40 pb40 text-center">
 
       <h2 id="js-wordElement">Password generator</h2>
-      <button onclick="copyToClipboard('js-wordElement')" class="btn btn-secondary">COPY</button>
+      <button type="button" id="copyButton" onclick="copyToClipboard('js-wordElement')" data-placement="right" class="btn btn-secondary"
+       data-toggle="tooltip" title="Copied!">
+      COPY</button>
+
     </section>
     <section>
       <p>Number of characters: <span id="demo"></span></p>
       <div class="slidecontainer">
         <input type="range" min="6" max="20" value="8" class="slider" id="myRange">
       </div>
-      <button class="btn btn-primary" type="button" name="lower-char-button" onclick="loopLowerChars()">lower case</button>
-      <button class="btn btn-primary" type="button" name="upper-char-button" onclick="loopUpperChars()">UPPERCASE</button>
-      <button class="btn btn-primary" type="button" name="upper-and-lower-char-button" onclick="LoopBothLowAndUpperChar()">MIxeD</button>
-      <button class="btn btn-primary" type="button" name="upper-and-lower-and-nums-button" onclick="LoopBothLowAndUpperAndNumbers()">+Numbers</button>
+
+      <button class="btn btn-lg btn-block btn-primary" type="button" name="upper-and-lower-and-nums-button" onclick="generateString()">Generate</button>
     </section>
     </div> <!-- einde kolom 1 -->
     <div class="col-lg-6 col-sm-12">
-      <section class="mt30 text-center">
-      <h1>Fun fact</h1>
-      <p>Cows have best friends!</p>
+      <section class="mt5 text-center">
+
+      <p class="pt30"><strong>FUN FACT:</strong> Cows have best friends!</p>
       <a href="https://plantbasednews.org/culture/the-science-of-cow-friendship-cows-have-best-friends/" target="_blank"  ><img src="img/cow-friends.jpg" class="cows" alt="cute cows" height="250"></a>
+
     </section>
+
   </div><!-- einde kolom 2 -->
+
   </div><!-- einde row -->
 </div><!-- einde container -->
 
-<footer class="footer mt10">
+<footer class="footer mt20">
       <div class="container text-center">
         <span class="text-muted"><a class="" href="http://www.avdveen.nl/">&#169; A. van der Veen</a></span>
       </div>

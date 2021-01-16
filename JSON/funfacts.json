@@ -1,0 +1,20 @@
+[
+    {
+        "factContent": "Big corporate",
+        "FactId": 0,
+        "factImage": "Neil",
+        "rating": 3.5
+    },
+    {
+        "factContent": "Big corporate",
+        "FactId": 1000,
+        "ceo": "Neil",
+        "rating": 3.6
+    },
+    {
+        "name": "Small startup",
+        "numberOfEmployees": 10,
+        "ceo": null,
+        "rating": 4.3
+    }
+]
