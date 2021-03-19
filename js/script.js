@@ -1,6 +1,10 @@
 // Message for users
 console.log("Welcome to the Elgarbo beta. Feel free to edit as you wish.")
 // for development use remove before PROD
+// DEBUG:
+function trace(message) { let traceOn = true; if (traceOn) {return console.log(message);} }
+
+
 // let testArray = ['a','f','d','z','h'];
 //  Copy button
 function copyToClipboard(elementId) {
@@ -20,11 +24,61 @@ function copyToClipboard(elementId) {
 
 let copyEl = document.getElementById('copyButton');
 
+// even listeners and functions for the copy button
 copyEl.addEventListener('click', showToolTip);
 copyEl.addEventListener('mouseleave', hideToolTip);
 
 
-// tooltop to show on copy
+let lockImg = document.getElementById("lock");
+let sliderDiv = document.getElementById("myRange");
+
+sliderDiv.addEventListener('click', checkSliderValue);
+
+lockImg.addEventListener('animationend', removeAnimation);
+
+function removeAnimation() {
+    lockImg.classList.remove("animate__animated", "animate__wobble");
+    console.log("removeAnimation wordt gevuurd")
+}
+
+function addAnimation () {
+  lockImg.classList.add("animate__animated", "animate__wobble");
+}
+//  Wall of code that adds a lock with color related to its security
+function checkSliderValue() {
+  let sliderValue = document.getElementById("myRange").value;
+
+if (sliderValue > 7 && sliderValue < 10) {
+    console.log(sliderValue + " is meer dan 7 en minder dan 10");
+    lockImg.setAttribute("src", "img/lock.png");
+    lockImg.classList.add("animate__animated", "animate__wobble");
+
+  } else if (sliderValue > 9 && sliderValue < 12) {
+    lockImg.setAttribute("src", "img/lock-green.png");
+    lockImg.classList.add("animate__animated", "animate__wobble");
+    console.log(sliderValue + " is meer dan 9")
+  } else if (sliderValue > 11 && sliderValue < 14) {
+    lockImg.setAttribute("src", "img/lock-blue.png");
+    lockImg.classList.add("animate__animated", "animate__wobble");
+    console.log(sliderValue + " is meer dan 11")
+  } else if (sliderValue > 13 && sliderValue < 16) {
+    lockImg.setAttribute("src", "img/lock-purple.png");
+    lockImg.classList.add("animate__animated", "animate__wobble");
+    console.log(sliderValue + " is meer dan 13")
+  } else if (sliderValue > 15) {
+    lockImg.setAttribute("src", "img/legendarylock.png");
+    lockImg.classList.add("animate__animated", "animate__wobble");
+    console.log(sliderValue + " is meer dan 15")
+  }
+
+  else {
+    console.log(sliderValue + " is minder dan 7");
+
+  }
+}
+
+
+// tooltip to show on copy
 function showToolTip() {
   $('[data-toggle=tooltip]').tooltip('show');
 }
@@ -45,6 +99,7 @@ slider.oninput = function() {
 }
 
 
+
 // toon woord in html
 function displayWord (e) {
   let element  = document.getElementById("js-wordElement");
@@ -63,43 +118,42 @@ function generateString() {
 
       displayWord(result);
    }
+   addAnimation();
    return result;
 }
 
-// console.log(generateString(19));
 
+// joke API
+var jsonResponse = {};
+var jokeDescription = "";
+var jokeQuestion = "";
+var jokeAnswer = "";
 
+function get_joke_of_the_day() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+	 if (this.readyState == 4 && this.status == 200) {
+	     // Access the result here
+var joke = xhttp.responseText;
+jsonResponse = JSON.parse(joke);
+jokeDescription = jsonResponse.contents.jokes[0].description;
+jokeQuestion = jsonResponse.contents.jokes[0].joke.title;
+jokeAnswer = jsonResponse.contents.jokes[0].joke.text;
+// jokeQuestion = jokeQuestion.substr(3);
+// jokeAnswer = jokeAnswer.substr(3);
+let jokeQuestionContainer = document.getElementById('jokeQuestion');
+let jokeAnswerContainer = document.getElementById('jokeAnswer');
 
-// FUN FACTS BY JSON
-  // grabbing the IDs of HTML elements that will display the fact
-  const header = document.getElementById('ff-title');
-  const body = document.getElementById('ff-body');
-  // url to json on server
-  const jsonLink = "JSON/funfacts.json";
-  const jsonLink1 = "JSON/heros.json"
-  // new XHR request
-  let request = new XMLHttpRequest();
-  request.open('GET', jsonLink);
-
-  // Set what kind of response we'll get
-  request.responseType = 'json';
-  request.send();
-
-  //  wait for actual response
-  request.onload = function() {
-    const superHeros = request.response;
-    // body.innerHTML = superHeros['funFacts'][2]["factContent"];
-    console.log("Inside function: " + request.response);
-    return request.response;
-  }
-
-  //
-  function requestListener () {
-  console.log(this.response);
+jokeQuestionContainer.innerHTML = jokeQuestion;
+jokeAnswerContainer.innerHTML = jokeAnswer;
+console.log(jsonResponse["joke"]);
+trace(jsonResponse);
+	 }
+    };
+    xhttp.open("GET", "https://api.jokes.one/jod?category=animal", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.setRequestHeader("X-JokesOne-Api-Secret", "YOUR API HERE");
+    xhttp.send();
 }
-//
-// var oReq = new XMLHttpRequest();
-// oReq.addEventListener("load", requestListener);
-// oReq.open("GET", jsonLink);
-// oReq.responseType = 'json';
-// oReq.send();
+
+get_joke_of_the_day();
