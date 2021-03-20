@@ -146,6 +146,11 @@
   cursor: pointer; /* Cursor on hover */
 }
 
+/* navbar section */
+
+/* #header {
+  background-image: url("../img/header-img.jpg");
+} */
 .navbar-brand {
   font-size: 1rem;
 }
