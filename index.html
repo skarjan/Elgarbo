@@ -38,32 +38,32 @@
       <div class="col-lg-6 col-sm-12">
         <p class="mt10">Use Elgarbo to generate a secure password.</p>
         <section class="pt40 pb40 text-center">
-          <h3 class="pw-field" id="js-wordElement">Password generator</h3><br>
+          <h1 class="pw-field" id="js-wordElement">Password generator</h1><br>
           <button type="button" id="copyButton" onclick="copyToClipboard('js-wordElement')" data-placement="left" class="btn btn-secondary" data-toggle="tooltip" title="Copied!">
             COPY</button>
           <svg id="lock" height="20px" class="lock" viewBox="-64 0 512 512" width="20px" xmlns="http://www.w3.org/2000/svg"><path d="m336 192h-16v-64c0-70.59375-57.40625-128-128-128s-128 57.40625-128 128v64h-16c-26.453125 0-48 21.523438-48 48v224c0 26.476562 21.546875 48 48 48h288c26.453125 0 48-21.523438 48-48v-224c0-26.476562-21.546875-48-48-48zm-229.332031-64c0-47.0625 38.269531-85.332031 85.332031-85.332031s85.332031 38.269531 85.332031 85.332031v64h-170.664062zm0 0"/></svg>
         </section>
         <section>
-          <p class="text-muted sub-text">Number of characters: <span id="demo"></span></p>
+          <label for="myRange" class="text-muted sub-text">Number of characters: <span id="demo"></span></label>
           <div class="slidecontainer">
             <input type="range" min="6" max="20" value="8" class="slider" id="myRange">
           </div>
 
-          <button class="btn btn-lg btn-block btn-primary" type="button" name="upper-and-lower-and-nums-button" onclick="generateString()">Generate</button>
+          <button class="btn btn-lg btn-block btn-light" type="button" name="upper-and-lower-and-nums-button" onclick="generateString()">Generate</button>
         </section>
       </div> <!-- einde kolom 1 -->
       <div class="col-lg-6 col-sm-12 joke-container">
         <section class="joke-section text-center">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Joke of the Day</h5>
-              <h6 class="card-subtitle mb-2 text-muted">@joke.one</h6>
+              <h2 class="card-title">Joke of the Day</h2>
+              <h3 class="card-subtitle mb-2 text-muted">@joke.one</h3>
               <p id="jokeQuestion">loading...</p>
               <p id="jokeAnswer"></p>
 
             </div>
           </div>
-          <h2></h2>
+
 
         </section>
 
@@ -74,7 +74,7 @@
 
   <footer class="footer mt20">
     <div class="container text-center">
-      <span class="text-muted"><a class="" href="http://www.avdveen.nl/">&#169; A. van der Veen</a></span>
+      <span class="text-muted"><a class="reduce-brightness" href="http://www.avdveen.nl/">&#169; A. van der Veen</a></span>
     </div>
   </footer>
   <!-- Bootstrap JS -->
