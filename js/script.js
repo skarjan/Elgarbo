@@ -3,7 +3,7 @@ console.log("Welcome to the Elgarbo beta. Feel free to edit as you wish.")
 // for development use remove before PROD
 // DEBUG:
 function trace(message) {
-  let traceOn = false;
+  let traceOn = falsex;
   if (traceOn) {
     return console.log(message);
   }
@@ -55,23 +55,22 @@ function checkSliderValue() {
 
   if (sliderValue > 7 && sliderValue < 10) {
     console.log(sliderValue + " is meer dan 7 en minder dan 10");
-    lockImg.setAttribute("src", "img/lock.png");
+    lockImg.style.fill = "black";
     lockImg.classList.add("animate__animated", "animate__wobble");
-
   } else if (sliderValue > 9 && sliderValue < 12) {
-    lockImg.setAttribute("src", "img/lock-green.png");
+    lockImg.style.fill = "green";
     lockImg.classList.add("animate__animated", "animate__wobble");
     console.log(sliderValue + " is meer dan 9")
   } else if (sliderValue > 11 && sliderValue < 14) {
-    lockImg.setAttribute("src", "img/lock-blue.png");
+    lockImg.style.fill = "blue";
     lockImg.classList.add("animate__animated", "animate__wobble");
     console.log(sliderValue + " is meer dan 11")
   } else if (sliderValue > 13 && sliderValue < 16) {
-    lockImg.setAttribute("src", "img/lock-purple.png");
+    lockImg.style.fill = "purple";
     lockImg.classList.add("animate__animated", "animate__wobble");
     console.log(sliderValue + " is meer dan 13")
   } else if (sliderValue > 15) {
-    lockImg.setAttribute("src", "img/legendarylock.png");
+    lockImg.style.fill = "gold";
     lockImg.classList.add("animate__animated", "animate__wobble");
     console.log(sliderValue + " is meer dan 15")
   } else {
@@ -85,7 +84,9 @@ function checkSliderValue() {
 //////////////////
 
 // prevent flash of unstyled content (FOUC)
-function displayBody (){document.body.hidden = false;}
+function displayBody() {
+  document.body.hidden = false;
+}
 
 function enableLinkElementsOnReady() {
 
@@ -94,88 +95,88 @@ function enableLinkElementsOnReady() {
   for (var i = 0; i < linkElementArr.length; i++) {
     trace(linkElementArr[i].disabled);
     if (linkElementArr[i].disabled) {
-        linkElementArr[i].disabled = false;
-      }
+      linkElementArr[i].disabled = false;
     }
-
-
-
-  }
-
-  function showToolTip() {
-    $('[data-toggle=tooltip]').tooltip('show');
-  }
-
-  function hideToolTip() {
-    $('[data-toggle=tooltip]').tooltip('dispose');
-  }
-
-  // Slider functionality
-  var slider = document.getElementById("myRange");
-  var output = document.getElementById("demo");
-  output.innerHTML = slider.value; // Display the default slider value
-
-  // Update the current slider value (each time you drag the slider handle)
-  slider.oninput = function() {
-    output.innerHTML = this.value;
   }
 
 
 
-  // toon woord in html
-  function displayWord(e) {
-    let element = document.getElementById("js-wordElement");
-    let arrString = e.toString();
-    var result = arrString.replace(/,/g, "");
-    element.innerHTML = result;
-  }
-  // New random string
-  function generateString() {
-    var length = document.getElementById("myRange").value;
-    var result = '';
-    ``
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+}
 
-      displayWord(result);
+function showToolTip() {
+  $('[data-toggle=tooltip]').tooltip('show');
+}
+
+function hideToolTip() {
+  $('[data-toggle=tooltip]').tooltip('dispose');
+}
+
+// Slider functionality
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value; // Display the default slider value
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
+
+
+
+// toon woord in html
+function displayWord(e) {
+  let element = document.getElementById("js-wordElement");
+  let arrString = e.toString();
+  var result = arrString.replace(/,/g, "");
+  element.innerHTML = result;
+}
+// New random string
+function generateString() {
+  var length = document.getElementById("myRange").value;
+  var result = '';
+  ``
+  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for (var i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+
+    displayWord(result);
+  }
+  addAnimation();
+  return result;
+}
+
+
+// joke API
+var jsonResponse = {};
+var jokeDescription = "";
+var jokeQuestion = "";
+var jokeAnswer = "";
+
+function get_joke_of_the_day() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      // Access the result here
+      var joke = xhttp.responseText;
+      jsonResponse = JSON.parse(joke);
+      jokeDescription = jsonResponse.contents.jokes[0].description;
+      jokeQuestion = jsonResponse.contents.jokes[0].joke.title;
+      jokeAnswer = jsonResponse.contents.jokes[0].joke.text;
+      // jokeQuestion = jokeQuestion.substr(3);
+      // jokeAnswer = jokeAnswer.substr(3);
+      let jokeQuestionContainer = document.getElementById('jokeQuestion');
+      let jokeAnswerContainer = document.getElementById('jokeAnswer');
+
+      jokeQuestionContainer.innerHTML = jokeQuestion;
+      jokeAnswerContainer.innerHTML = jokeAnswer;
+      trace(jsonResponse);
     }
-    addAnimation();
-    return result;
-  }
+  };
+  xhttp.open("GET", "https://api.jokes.one/jod?category=animal", true);
+  xhttp.setRequestHeader("Content-type", "application/json");
+  xhttp.setRequestHeader("X-JokesOne-Api-Secret", "YOUR API HERE");
+  xhttp.send();
+}
 
-
-  // joke API
-  var jsonResponse = {};
-  var jokeDescription = "";
-  var jokeQuestion = "";
-  var jokeAnswer = "";
-
-  function get_joke_of_the_day() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        // Access the result here
-        var joke = xhttp.responseText;
-        jsonResponse = JSON.parse(joke);
-        jokeDescription = jsonResponse.contents.jokes[0].description;
-        jokeQuestion = jsonResponse.contents.jokes[0].joke.title;
-        jokeAnswer = jsonResponse.contents.jokes[0].joke.text;
-        // jokeQuestion = jokeQuestion.substr(3);
-        // jokeAnswer = jokeAnswer.substr(3);
-        let jokeQuestionContainer = document.getElementById('jokeQuestion');
-        let jokeAnswerContainer = document.getElementById('jokeAnswer');
-
-        jokeQuestionContainer.innerHTML = jokeQuestion;
-        jokeAnswerContainer.innerHTML = jokeAnswer;
-        trace(jsonResponse);
-      }
-    };
-    xhttp.open("GET", "https://api.jokes.one/jod?category=animal", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.setRequestHeader("X-JokesOne-Api-Secret", "YOUR API HERE");
-    xhttp.send();
-  }
-
-  get_joke_of_the_day();
+get_joke_of_the_day();
