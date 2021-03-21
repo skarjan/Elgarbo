@@ -3,7 +3,7 @@ console.log("Welcome to the Elgarbo beta. Feel free to edit as you wish.")
 // for development use remove before PROD
 // DEBUG:
 function trace(message) {
-  let traceOn = falsex;
+  let traceOn = false;
   if (traceOn) {
     return console.log(message);
   }
